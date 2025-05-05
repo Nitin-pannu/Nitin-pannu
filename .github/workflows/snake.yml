@@ -1,21 +1,31 @@
-name: 🐍 Generate Contribution Snake
+name: 🐍 Generate Contribution Snake (Colorful Dark)
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # Runs daily at midnight UTC
-  workflow_dispatch:      # Allows manual triggering
+    - cron: "0 0 * * *"  # every day at midnight UTC
+  workflow_dispatch:
 
 jobs:
   generate:
     runs-on: ubuntu-latest
     name: Generate Snake Animation
     steps:
-      - name: Generate GitHub Contribution Snake
+      - name: Generate Snake (Dark + Colorful)
         uses: Platane/snk@v3
         with:
           github_user_name: Nitin-pannu
           outputs: |
             ./output/github-contribution-grid-snake.svg
+          # 🌈 Custom color palette and dark theme
+          config: >
+            {
+              "theme": "dark",
+              "palette": ["#6a0dad", "#e75480", "#007fff", "#00bfff", "#ff66cc"],
+              "grid": {
+                "color": "#ffffff",
+                "emptyColor": "#222222"
+              }
+            }
 
       - name: Push to the output branch
         uses: crazy-max/ghaction-github-pages@v4
